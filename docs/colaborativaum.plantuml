@@ -1,0 +1,103 @@
+@startuml colaborativaum
+' skinparam ClassAttributeIconSize 0
+
+class Node<T extends Comparable<T>> {
+    + T value
+    + Node<T> left
+    + Node<T> right
+
+    + Node(T value)
+    + String toString()
+    + int compareTo(Node<T> otherNode)
+}
+
+' IterableCollection
+interface IterableBST {
+    + BSTIterator createPreorderIterator()
+    + BSTIterator createInorderIterator()
+    + BSTIterator createPostorderIterator()
+}
+
+' ConcreteCollection
+class BinarySearchTree<T extends Comparable<T>> {
+    - Node<T> root
+
+    + BinarySearchTree(T value)
+    + T getRoot()
+    + boolean isEmpty()
+    + T search(T value)
+    - Node<T> search(Node<T> root, T key)
+    + boolean contains(T key)
+    - boolean contains(Node<T> root, T key)
+    + void add(T value)
+    - Node<T> addRecursive(Node<T> root, T value)
+    + T delete(T key)
+    - Node<T> delete(Node<T> root, T data)
+    - T findMax(Node<T> root)
+    
+    ' iterate through the tree
+    + void preorder()
+    - void preorder(Node<T> root)
+    + void inorder()
+    - void inorder(Node<T> root)
+    + void postorder()
+    - void postorder(Node<T> root)
+
+    + BSTIterator createPreorderIterator()
+    + BSTIterator createInorderIterator()
+    + BSTIterator createPostorderIterator()
+    
+    + int size()
+    + int size(Node<T> root)
+}
+
+' Iterator interface
+interface BSTIterator {
+    + Node<T> getNext()
+    + boolean hasNext()
+    + void reset()
+}
+
+' Concrete Iterators
+class PreorderIterator {
+    - BinarySearchTree collection
+    - Node<T> currentNode
+
+    + T getNext()
+    + boolean hasNext()
+    + void reset()
+}
+
+class InorderIterator {
+    - BinarySearchTree collection
+    - Node<T> currentNode
+
+    + T getNext()
+    + boolean hasNext()
+    + void reset()
+}
+
+class PostorderIterator {
+    - BinarySearchTree collection
+    - Node<T> currentNode
+
+    + T getNext()
+    + boolean hasNext()
+    + void reset()
+}
+
+' Relationships
+BinarySearchTree "1" *-- "1..*" Node
+IterableBST <|.. BinarySearchTree
+
+BSTIterator <.. IterableBST
+
+BinarySearchTree <--> PreorderIterator
+BinarySearchTree <--> InorderIterator
+BinarySearchTree <--> PostorderIterator
+
+BSTIterator <|.. PreorderIterator
+BSTIterator <|.. InorderIterator
+BSTIterator <|.. PostorderIterator
+
+@enduml
