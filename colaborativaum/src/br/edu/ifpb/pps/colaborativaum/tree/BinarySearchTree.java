@@ -3,6 +3,7 @@ package br.edu.ifpb.pps.colaborativaum.tree;
 import br.edu.ifpb.pps.colaborativaum.iterator.BSTIterator;
 import br.edu.ifpb.pps.colaborativaum.iterator.InorderIterator;
 import br.edu.ifpb.pps.colaborativaum.iterator.PostorderIterator;
+import br.edu.ifpb.pps.colaborativaum.iterator.PreorderIterator;
 
 public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T> {
 
@@ -211,12 +212,12 @@ public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T>
 
     @Override
     public BSTIterator<T> createPreorderIterator() {
-        return new InorderIterator<T>(this);
+        return new PreorderIterator<T>(root);
     }
 
     @Override
     public BSTIterator<T> createInorderIterator() {
-        return new InorderIterator<T>(this);
+        return new InorderIterator<T>(root);
     }
 
     @Override
