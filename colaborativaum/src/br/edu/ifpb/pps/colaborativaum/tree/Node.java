@@ -4,20 +4,20 @@ package br.edu.ifpb.pps.colaborativaum.tree;
  * Classe Node com o parâmetro genérico T que estende Comparable<T>. Isso significa que
  * o tipo T deve ser comparável a si mesmo, permitindo que os nós sejam organizados de acordo
  * com os seus valores.
- * @author Alex Sandro
  *
  * @param <T>
+ * @author Alex Sandro
  */
-public class Node <T extends Comparable<T>> {
+public class Node<T extends Comparable<T>> {
 
-    T value;
-    Node<T> left;
-    Node<T> right;
+    public T value;
+    public Node<T> left;
+    public Node<T> right;
 
     Node(T value) {
-       this.value = value;
-       right = null;
-       left = null;
+        this.value = value;
+        right = null;
+        left = null;
     }
 
     @Override
