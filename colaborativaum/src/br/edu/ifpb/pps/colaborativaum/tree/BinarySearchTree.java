@@ -212,16 +212,16 @@ public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T>
 
     @Override
     public BSTIterator<T> createPreorderIterator() {
-        return new PreorderIterator<T>(root);
+        return new PreorderIterator<>(root);
     }
 
     @Override
     public BSTIterator<T> createInorderIterator() {
-        return new InorderIterator<T>(root);
+        return new InorderIterator<>(root);
     }
 
     @Override
     public BSTIterator<T> createPostorderIterator() {
-        return new PostorderIterator<>(this.root);
+        return new PostorderIterator<>(root);
     }
 }

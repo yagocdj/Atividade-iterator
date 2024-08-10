@@ -8,12 +8,12 @@ public class InorderIterator<T extends Comparable<T>> implements BSTIterator<T> 
     private BinarySearchTree<T> bst;
     private Node<T> currentNode;
 
-    public InorderIterator(BinarySearchTree<T> bst) {
-        this.bst = bst;
+    public InorderIterator(Node<T> root) {
+
     }
 
     @Override
-    public Node<T> getNext() {
+    public T getNext() {
         return null;
     }
 

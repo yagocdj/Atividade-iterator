@@ -22,12 +22,22 @@ public class MainBST {
         bst.inorder();
         bst.postorder();
 
-        var iterator = bst.createPostorderIterator();
-        while (iterator.hasNext()) {
-            var node = iterator.getNext();
-            System.out.println(node);
+        System.out.println("\n#######################################");
+        System.out.println("Iterando pré ordem:");
+        var iteratorPreorder = bst.createPreorderIterator();
+        while (iteratorPreorder.hasNext()) {
+            var node = iteratorPreorder.getNext();
+            System.out.print(node + " - ");
         }
+        System.out.println("\n#######################################");
 
+        System.out.println("Iterando pós ordem:");
+        var iteratorPostOrder = bst.createPostorderIterator();
+        while (iteratorPostOrder.hasNext()) {
+            var node = iteratorPostOrder.getNext();
+            System.out.print(node + " - ");
+        }
+        System.out.println("\n#######################################");
 
 //        System.out.println("Search 90: " + bst.search(810));
 //        System.out.println("Contains 80: " + bst.contains(810));
