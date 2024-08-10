@@ -22,14 +22,14 @@ public class PostorderIterator<T extends Comparable<T>> implements BSTIterator<T
     }
 
     @Override
-    public Node<T> getNext() {
+    public T getNext() {
         Node<T> node = stack.pop();
         if (hasNext()) {
             if (node == stack.peek().left) {
                 init(stack.peek().right);
             }
         }
-        return node;
+        return node.value;
     }
 
     @Override
