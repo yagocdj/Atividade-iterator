@@ -1,6 +1,11 @@
 package br.edu.ifpb.pps.colaborativaum.tree;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+import br.edu.ifpb.pps.colaborativaum.iterator.BSTIterator;
+import br.edu.ifpb.pps.colaborativaum.iterator.InorderIterator;
+import br.edu.ifpb.pps.colaborativaum.iterator.PostorderIterator;
+import br.edu.ifpb.pps.colaborativaum.iterator.PreorderIterator;
+
+public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T> {
 
     private Node<T> root;
 
@@ -203,5 +208,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
         else
             return 1 + size(root.left) + size(root.right);
 
+    }
+
+    @Override
+    public BSTIterator<T> createPreorderIterator() {
+        return new PreorderIterator<>(root);
+    }
+
+    @Override
+    public BSTIterator<T> createInorderIterator() {
+        return new InorderIterator<>(root);
+    }
+
+    @Override
+    public BSTIterator<T> createPostorderIterator() {
+        return new PostorderIterator<>(root);
     }
 }
