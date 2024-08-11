@@ -47,6 +47,11 @@ public class MainBST {
         }
         System.out.println("\n#######################################");
 
+        var newBST = bst.getClone();
+        newBST.preorder();
+        newBST.delete(8);
+        newBST.preorder();
+        bst.preorder();
 //        System.out.println("Search 90: " + bst.search(810));
 //        System.out.println("Contains 80: " + bst.contains(810));
 //
