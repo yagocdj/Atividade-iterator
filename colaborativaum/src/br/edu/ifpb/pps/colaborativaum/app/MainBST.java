@@ -31,6 +31,14 @@ public class MainBST {
         }
         System.out.println("\n#######################################");
 
+        System.out.println("Iterando em ordem:");
+        var iteratorInorder = bst.createInorderIterator();
+        while (iteratorInorder.hasNext()) {
+            var node = iteratorInorder.getNext();
+            System.out.print(node + " - ");
+        }
+        System.out.println("\n#######################################");
+
         System.out.println("Iterando pós ordem:");
         var iteratorPostOrder = bst.createPostorderIterator();
         while (iteratorPostOrder.hasNext()) {
