@@ -47,6 +47,14 @@ public class MainBST {
         }
         System.out.println("\n#######################################");
 
+        System.out.println("Iterando ordem em camada:");
+        var iteratorLevelOrder = bst.createLevelorderIterator();
+        while (iteratorLevelOrder.hasNext()) {
+            var node = iteratorLevelOrder.getNext();
+            System.out.print(node + " - ");
+        }
+        System.out.println("\n#######################################");
+
         var newBST = bst.getClone();
         newBST.preorder();
         newBST.delete(8);
