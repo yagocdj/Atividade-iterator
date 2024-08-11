@@ -1,11 +1,19 @@
 package br.edu.ifpb.pps.colaborativaum.tree;
 
-public class BinarySearchTree<T extends Comparable<T>> {
+import br.edu.ifpb.pps.colaborativaum.iterator.*;
+import br.edu.ifpb.pps.colaborativaum.prototype.Prototype;
+
+public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T>, Prototype {
 
     private Node<T> root;
 
     public BinarySearchTree(T value) {
         this.root = new Node<T>(value);
+    }
+
+    // Construtor padrão
+    public BinarySearchTree() {
+        this.root = null;
     }
 
     public T getRoot() {
@@ -203,5 +211,33 @@ public class BinarySearchTree<T extends Comparable<T>> {
         else
             return 1 + size(root.left) + size(root.right);
 
+    }
+
+    @Override
+    public BSTIterator<T> createPreorderIterator() {
+        return new PreorderIterator<>(root);
+    }
+
+    @Override
+    public BSTIterator<T> createInorderIterator() {
+        return new InorderIterator<>(root);
+    }
+
+    @Override
+    public BSTIterator<T> createPostorderIterator() {
+        return new PostorderIterator<>(root);
+    }
+
+    @Override
+    public BSTIterator<T> createLevelorderIterator() { return new LevelorderIterator<>(root); }
+
+
+    @Override
+    public BinarySearchTree<T> getClone() {
+        BinarySearchTree<T> newTree = new BinarySearchTree<>();
+        if (this.root != null) {
+            newTree.root = this.root.getClone();
+        }
+        return newTree;
     }
 }
