@@ -1,5 +1,5 @@
 @startuml colaborativaum
-' skinparam ClassAttributeIconSize 0
+skinparam ClassAttributeIconSize 0
 
 class Node<T extends Comparable<T>> {
     + T value
@@ -9,13 +9,15 @@ class Node<T extends Comparable<T>> {
     + Node(T value)
     + String toString()
     + int compareTo(Node<T> otherNode)
+    + Node<T> getClone()
 }
 
 ' IterableCollection
-interface IterableBST {
-    + BSTIterator createPreorderIterator()
-    + BSTIterator createInorderIterator()
-    + BSTIterator createPostorderIterator()
+interface IterableBST<T extends Comparable<T>> {
+    + BSTIterator<T> createPreorderIterator()
+    + BSTIterator<T> createInorderIterator()
+    + BSTIterator<T> createPostorderIterator()
+    + BSTIterator<T> createLevelorderIterator()
 }
 
 ' ConcreteCollection
@@ -43,47 +45,59 @@ class BinarySearchTree<T extends Comparable<T>> {
     + void postorder()
     - void postorder(Node<T> root)
 
-    + BSTIterator createPreorderIterator()
-    + BSTIterator createInorderIterator()
-    + BSTIterator createPostorderIterator()
+    + BSTIterator<T> createPreorderIterator()
+    + BSTIterator<T> createInorderIterator()
+    + BSTIterator<T> createPostorderIterator()
+    + BSTIterator<T> createLevelorderIterator()
     
     + int size()
     + int size(Node<T> root)
+    + BinarySearchTree<T> getClone()
 }
 
 ' Iterator interface
-interface BSTIterator {
+interface BSTIterator<T extends Comparable<T>> {
     + Node<T> getNext()
     + boolean hasNext()
-    + void reset()
 }
 
 ' Concrete Iterators
-class PreorderIterator {
-    - BinarySearchTree collection
-    - Node<T> currentNode
+class PreorderIterator<T extends Comparable<T>> {
+    - Deque<Node<T>> stack
 
+    + PreorderIterator(Node<T> root)
     + T getNext()
     + boolean hasNext()
-    + void reset()
 }
 
-class InorderIterator {
-    - BinarySearchTree collection
-    - Node<T> currentNode
+class InorderIterator<T extends Comparable<T>> {
+    - Stack<Node<T>> stack
 
     + T getNext()
     + boolean hasNext()
-    + void reset()
+    - void pushAll(Node<T> node)
 }
 
-class PostorderIterator {
-    - BinarySearchTree collection
-    - Node<T> currentNode
+class PostorderIterator<T extends Comparable<T>> {
+    - Stack<Node<T>> stack
 
+    + PostorderIterator(Node<T> root)
     + T getNext()
     + boolean hasNext()
-    + void reset()
+    - void init(Node<T> node)
+}
+
+class LevelorderIterator<T extends Comparable<T>> {
+    - Queue<Node<T>> queue
+
+    + LevelorderIterator(Node<T> root)
+    + T getNext()
+    + boolean hasNext()
+}
+
+' Prototype interface
+interface Prototype {
+    + Prototype getClone()
 }
 
 ' Relationships
@@ -95,9 +109,14 @@ BSTIterator <.. IterableBST
 BinarySearchTree <--> PreorderIterator
 BinarySearchTree <--> InorderIterator
 BinarySearchTree <--> PostorderIterator
+BinarySearchTree <--> LevelorderIterator
 
 BSTIterator <|.. PreorderIterator
 BSTIterator <|.. InorderIterator
 BSTIterator <|.. PostorderIterator
+BSTIterator <|.. LevelorderIterator
+
+Prototype <|.. Node
+Prototype <|.. BinarySearchTree
 
 @enduml
