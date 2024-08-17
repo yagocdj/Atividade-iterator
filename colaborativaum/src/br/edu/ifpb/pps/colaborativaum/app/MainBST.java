@@ -4,12 +4,10 @@ import br.edu.ifpb.pps.colaborativaum.tree.BinarySearchTree;
 
 public class MainBST {
     public static void main(String[] args) {
-        BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>(8);
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>(8);
         System.out.println("Root:" + bst.getRoot());
         System.out.println("Size:" + bst.size());
 
-        //System.out.println("Delete 8:" + bst.delete(8));
-        //System.out.println("Root:" + bst.getRoot());
         bst.add(3);
         bst.add(1);
         bst.add(6);
@@ -18,6 +16,7 @@ public class MainBST {
         bst.add(10);
         bst.add(14);
         bst.add(13);
+
         bst.preorder();
         bst.inorder();
         bst.postorder();
@@ -55,17 +54,27 @@ public class MainBST {
         }
         System.out.println("\n#######################################");
 
-        var newBST = bst.getClone();
+        BinarySearchTree<Integer> newBST = (BinarySearchTree<Integer>) bst.getClone();
+        System.out.println("\n## Pré ordem na árvore clonada ##");
         newBST.preorder();
+
+        // Removendo um nó da árvore clonada
+        System.out.println("\n-X- Removendo o nó de valor '8' da árvore clonada -X-");
         newBST.delete(8);
+        System.out.println(newBST.getRoot());
+
+        System.out.println("\n## Pré ordem após remoção do 8 na árvore clonada ##");
         newBST.preorder();
+
+        System.out.println("\n## Pré ordem na árvore original ##");
         bst.preorder();
-//        System.out.println("Search 90: " + bst.search(810));
-//        System.out.println("Contains 80: " + bst.contains(810));
-//
-//        System.out.println("Delete 50:" + bst.delete(50));
-//        System.out.println("Root:" + bst.getRoot());
-//
-//        System.out.println("Size:" + bst.size());
+
+        System.out.println("\nBuscando o 1 na árvore original: " + bst.search(1));
+        System.out.println("Contém 1 na árvore original: " + bst.contains(1));
+
+        System.out.println("Raíz da árvore original: " + bst.getRoot());
+
+        System.out.println("Tamanho da árvore original: " + bst.size());
+        System.out.println("Tamanho da árvore clonada: " + newBST.size());
     }
 }

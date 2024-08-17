@@ -8,12 +8,14 @@ public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T>
     private Node<T> root;
 
     public BinarySearchTree(T value) {
-        this.root = new Node<T>(value);
+        this.root = new Node<>(value);
     }
 
     // Construtor padrão
-    public BinarySearchTree() {
-        this.root = null;
+    public BinarySearchTree() { }
+
+    public BinarySearchTree(BinarySearchTree<T> otherBst) {
+        this.root = new Node<>(otherBst.root);
     }
 
     public T getRoot() {
@@ -233,11 +235,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements IterableBST<T>
 
 
     @Override
-    public BinarySearchTree<T> getClone() {
-        BinarySearchTree<T> newTree = new BinarySearchTree<>();
-        if (this.root != null) {
-            newTree.root = this.root.getClone();
-        }
-        return newTree;
+    public Prototype getClone() {
+        return new BinarySearchTree<>(this);
     }
 }
