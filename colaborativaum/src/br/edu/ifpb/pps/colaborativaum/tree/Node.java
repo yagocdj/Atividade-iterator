@@ -22,7 +22,7 @@ public class Node<T extends Comparable<T>> implements Prototype {
         left = null;
     }
 
-    public Node(Node<T> otherNode) {
+    private Node(Node<T> otherNode) {
         this.value = otherNode.value;
         if (otherNode.left != null)
             this.left = new Node<>(otherNode.left);
