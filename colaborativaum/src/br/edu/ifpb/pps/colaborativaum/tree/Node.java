@@ -16,10 +16,18 @@ public class Node<T extends Comparable<T>> implements Prototype {
     public Node<T> left;
     public Node<T> right;
 
-    Node(T value) {
+    public Node(T value) {
         this.value = value;
         right = null;
         left = null;
+    }
+
+    private Node(Node<T> otherNode) {
+        this.value = otherNode.value;
+        if (otherNode.left != null)
+            this.left = new Node<>(otherNode.left);
+        if (otherNode.right != null)
+            this.right = new Node<>(otherNode.right);
     }
 
     @Override
@@ -34,14 +42,7 @@ public class Node<T extends Comparable<T>> implements Prototype {
     }
 
     @Override
-    public Node<T> getClone() {
-        Node<T> newNode = new Node<>(this.value);
-        if (this.left != null) {
-            newNode.left = this.left.getClone();
-        }
-        if (this.right != null) {
-            newNode.right = this.right.getClone();
-        }
-        return newNode;
+    public Prototype getClone() {
+        return new Node<>(this);
     }
 }
