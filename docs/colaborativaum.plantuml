@@ -7,9 +7,10 @@ class Node<T extends Comparable<T>> {
     + Node<T> right
 
     + Node(T value)
+    - Node(Node<T> otherNode)
     + String toString()
     + int compareTo(Node<T> otherNode)
-    + Node<T> getClone()
+    + Prototype getClone()
 }
 
 ' IterableCollection
@@ -25,6 +26,7 @@ class BinarySearchTree<T extends Comparable<T>> {
     - Node<T> root
 
     + BinarySearchTree(T value)
+    - BinarySearchTree(BinarySearchTree<T> otherBst)
     + T getRoot()
     + boolean isEmpty()
     + T search(T value)
@@ -52,7 +54,7 @@ class BinarySearchTree<T extends Comparable<T>> {
     
     + int size()
     + int size(Node<T> root)
-    + BinarySearchTree<T> getClone()
+    + Prototype getClone()
 }
 
 ' Iterator interface
